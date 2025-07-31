@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from './pages';
+import Index from './pages/Index';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
 import { ToastContainer } from 'react-toastify';
