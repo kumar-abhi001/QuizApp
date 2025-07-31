@@ -2,7 +2,6 @@
 
 A responsive and interactive quiz application built with **React** that allows users to attempt quizzes, track progress, and submit results. It supports timed quizzes, answer tracking, and live question navigation.
 
----
 
 ## 🚀 Features
 
@@ -13,7 +12,6 @@ A responsive and interactive quiz application built with **React** that allows u
 - **Submission Flow**: Auto-submits when time runs out or user clicks submit.
 - **Responsive UI**: Works seamlessly on desktop and mobile.
 
----
 
 ## 🛠️ Tech Stack
 
@@ -22,25 +20,6 @@ A responsive and interactive quiz application built with **React** that allows u
 - **Routing**: React Router
 - **API**: Fetching questions from Open Trivia DB (or custom API)
 
----
-
-## 📂 Project Structure
-
-quiz-app/
-│── src/
-│ ├── components/ # Reusable UI components
-│ ├── pages/ # Page components (Quiz, Result, etc.)
-│ ├── hooks/ # Custom hooks (Timer, State management)
-│ ├── App.jsx # Main App entry
-│ ├── index.css # Global styles
-│ └── main.jsx # React DOM entry
-│
-│── public/ # Static assets
-│── package.json # Dependencies & scripts
-│── vite.config.js # Vite configuration
-│── README.md # Documentation
-
----
 
 ## ⚡ Installation & Setup
 
@@ -57,14 +36,21 @@ quiz-app/
     ```bash
     npm run dev
 
-**Usage**
-Start the quiz by providing your email (required).
+## Usage
+- Start the quiz by providing your email (required).
 
-Answer questions using multiple-choice options.
+- Answer questions using multiple-choice options.
 
-Navigate between questions using the navigation buttons.
+- Navigate between questions using the navigation buttons.
 
-Submit manually or wait for auto-submit when the timer ends.
+- Submit manually or wait for auto-submit when the timer ends.
 
-View results and feedback.
+- View results and feedback.
+
+## Screenshorts
+![Quiz App Screenshot](./public/1.png)
+![Quiz App Screenshot](./public/2.png)
+![Quiz App Screenshot](./public/3.png)
+![Quiz App Screenshot](./public/4.png)
+
 
