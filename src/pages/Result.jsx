@@ -9,7 +9,7 @@ export default function Result() {
 
   useEffect(() => {
       const storedResults = sessionStorage.getItem('quizResults');
-      console.log(storedResults);
+      
     if (!storedResults) {
       navigate('/');
       return;

@@ -22,8 +22,6 @@ const Hero = () => {
     }
 
     setIsLoading(true);
-    
-      console.log("Naviagte");
       navigate(`/quiz?email=${encodeURIComponent(email)}`);
   };
 
