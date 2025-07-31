@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Brain, Clock, CheckCircle, Users } from 'lucide-react';
 import { toast } from 'react-toastify';
 
-const Index = () => {
+const Hero = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -150,4 +150,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Hero;

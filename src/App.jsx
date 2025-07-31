@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from './pages/Index';
+import Index from './pages/Hero';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
 import { ToastContainer } from 'react-toastify';
@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter >
         <Routes>
-          <Route path='/' element={<Index />} />
+          <Route path='/' element={<Hero />} />
           <Route path='/quiz' element={<Quiz/>} />
           <Route path='/results' element={<Result />} />
         </Routes>
