@@ -20,20 +20,28 @@ export default function Quiz() {
     isSubmitted: false,
     startTime: new Date()
   });
-
+    const decodeHtml = (html) => {
+        const txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    };
+    
   const fetchQuestions = async () => {
     try {
       const response = await fetch("https://opentdb.com/api.php?amount=15&type=multiple");
       if (response.ok) {
         const data = await response.json();
         const formattedQuestions = data.results.map((q, index) => ({
-          id: index + 1,
-          question: q.question,
-          options: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
-          correctAnswer: q.correct_answer
-        }));
+        id: index + 1,
+        question: decodeHtml(q.question),
+        options: [...q.incorrect_answers, q.correct_answer]
+        .map(opt => decodeHtml(opt))
+        .sort(() => Math.random() - 0.5),
+        correctAnswer: decodeHtml(q.correct_answer)
+    }));
 
-        setQuestions(formattedQuestions);
+          setQuestions(formattedQuestions);
+          console.log(questions);
         setQuizState(prev => ({
           ...prev,
           userAnswers: formattedQuestions.map(q => ({ questionId: q.id, selectedOption: null }))
@@ -44,7 +52,7 @@ export default function Quiz() {
     } finally {
       setLoading(false);
     }
-  };
+    };
 
   useEffect(() => {
     fetchQuestions();
@@ -150,21 +158,40 @@ export default function Quiz() {
           Question {quizState.currentQuestionIndex + 1} of {questions.length} ({Math.round(progress)}% Complete)
         </div>
         <div className="h-2 bg-gray-300 mt-2 rounded">
-          <div className="h-2 bg-blue-500 rounded" style={{ width: `${progress}%` }}></div>
+          <div className="h-2 bg-black rounded" style={{ width: `${progress}%` }}></div>
         </div>
       </div>
 
       {/* Question Box */}
-      <div className="p-4 border rounded-lg shadow mb-6 text-black bg-white min-h-[240px] flex">
-        Questions
-      </div>
+<div className="p-4 border rounded-lg shadow mb-6 text-black bg-white h-[350px] overflow-y-auto w-full sm:w-[768px] mx-auto">
+  <h3 className="font-semibold mb-4 text-sm sm:text-base">
+    {currentQuestion?.question}
+  </h3>
+  <div className="space-y-2 flex flex-col text-left">
+    {currentQuestion?.options.map((option, index) => (
+      <label 
+        key={index} 
+        className="block cursor-pointer border rounded px-2 sm:px-3 py-2 hover:bg-gray-100 transition text-sm sm:text-base"
+      >
+        <input
+          type="radio"
+          name={`question-${currentQuestion.id}`}
+          checked={currentAnswer?.selectedOption === option}
+          onChange={() => handleAnswerSelect(option)}
+          className="mr-2"
+        />
+        <span>{option}</span>
+      </label>
+    ))}
+  </div>
+</div>
 
       {/* Navigation */}
       <div className="flex flex-col sm:flex-row justify-between gap-3 mb-6">
         <button
           onClick={handlePrevious}
           disabled={quizState.currentQuestionIndex === 0}
-          className="px-3 sm:px-4 py-2 bg-gray-600 text-white rounded disabled:opacity-50 flex-1 sm:flex-none"
+          className="px-3 sm:px-4 py-2 bg-gray-600 rounded-xl text-white disabled:opacity-50 flex-1 sm:flex-none"
         >
           Previous
         </button>
@@ -173,16 +200,16 @@ export default function Quiz() {
             Submit Quiz
           </button>
         ) : (
-          <button onClick={handleNext} className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded flex-1 sm:flex-none">
+          <button onClick={handleNext} className="px-3 sm:px-4 py-2 bg-black rounded-xl text-white flex-1 sm:flex-none">
             Next
           </button>
         )}
       </div>
 
       {/* Question Navigation Grid */}
-      <div className="p-3 sm:p-4 border rounded-lg">
+      <div className="p-3 sm:p-4 border rounded-lg shadow mb-6 text-black bg-white overflow-y-auto w-full sm:w-[768px] mx-auto">
         <h4 className="mb-3 font-semibold text-sm sm:text-base">Question Navigation</h4>
-        <div className="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2">
+        <div className="grid grid-cols-10 xs:grid-cols-10 sm:grid-cols-8 md:grid-cols-15 gap-2 sm">
           {questions.map((_, index) => (
             <button
               key={index}

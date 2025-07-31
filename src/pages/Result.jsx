@@ -76,7 +76,7 @@ export default function Result() {
             <Trophy className="w-6 h-6 text-yellow-500" />
             Quiz Summary
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <User className="w-5 h-5 text-gray-500 mx-auto mb-1" />
               <p className="text-gray-500 text-sm">Participant</p>
